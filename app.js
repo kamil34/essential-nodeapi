@@ -19,16 +19,16 @@ const moment = require('moment'); // moment.js (timestamp & format)
 // routes
 const routes = {
     getUser: require('./api/getUser')
-}
+};
 
-app.use('/api/getUser', routes.getUser)
+app.use('/api/getUser', routes.getUser);
 
 // 404 error
 app.use((request, response, next) => {
     const error = new Error('Not found.');
     error.status = 404;
-    next(error)
-    })
+    next(error);
+    });
 app.use((error, request, response, next) => {
     response.status(error.status || 500);
     response.json({
@@ -36,12 +36,12 @@ app.use((error, request, response, next) => {
           'code': error.status,
           'info': error.message,
           'timestamp': moment().format("hh:mm:ss.SSS a, MM/DD/YYYY")
-          })
-    })
+          });
+    });
 
 // homepage
 app.get('/', (request, response) => {
-    response.send("The '/' of the server.")
-    })
+    response.send("The '/' of the server.");
+    });
 
-app.listen(80)
+app.listen(8000);

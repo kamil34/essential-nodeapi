@@ -17,7 +17,7 @@ router.post('/', (request, response) => {
             'info': "Sent a POST request to the './api/getUser' of the server.",
             'timestamp': moment().format("hh:mm:ss.SSS a, MM/DD/YYYY"),
             'body': request.body
-            })
+            });
         }
     else {
         response.status(400).json({
@@ -25,8 +25,8 @@ router.post('/', (request, response) => {
             'code': 400,
             'info': "Bad request.",
             'timestamp': moment().format("hh:mm:ss.SSS a, MM/DD/YYYY")
-            })
-        }
-    })  
+            });
+        };
+    });  
 
 module.exports = router;
