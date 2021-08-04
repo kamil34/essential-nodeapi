@@ -19,29 +19,56 @@ const moment = require('moment'); // moment.js (timestamp & format)
 // routes
 const routes = {
     getUser: require('./api/getUser')
-}
+};
 
-app.use('/api/getUser', routes.getUser)
-
-// 404 error
-app.use((request, response, next) => {
-    const error = new Error('Not found.');
-    error.status = 404;
-    next(error)
-    })
-app.use((error, request, response, next) => {
-    response.status(error.status || 500);
-    response.json({
-          'success': false,
-          'code': error.status,
-          'info': error.message,
-          'timestamp': moment().format("hh:mm:ss.SSS a, MM/DD/YYYY")
-          })
-    })
+app.use('/api/getUser', routes.getUser);
 
 // homepage
 app.get('/', (request, response) => {
-    response.send("The '/' of the server.")
-    })
+    response.send("The '/' of the server.");
+    });
 
-app.listen(80)
+// errors
+const error = new Error();
+
+// error handling
+app.use((request, response, next) => {
+    error.statusCode = 404;
+    throw error;
+    });
+app.use((error, request, response, next) => {
+
+    // const error_messages = {
+    //     400: 'Bad request.',
+    //     404: 'Not found.',
+    //     500: 'Internal Server Error.'
+    //     }
+
+    const error_messages = [
+        {
+            code: 400,
+            message: "Bad request."
+        },
+        {
+            code: 404,
+            message: "Not found."
+        },
+        {
+            code: 404,
+            message: "Internal Server Error."
+        }
+    ];
+    // Issue: Different expectations towards response.
+    // Code:
+    // Object.keys(error_messages).find(error_messages => error_messages.code === error.statusCode).message;
+
+    response.status(error.statusCode || 500);
+    // response.json({
+    //       'success': false,
+    //       'code': error.statusCode,
+    //       'info': error.statusCode, //todo
+    //       'timestamp': moment().format("hh:mm:ss.SSS a, MM/DD/YYYY")
+    //       });
+    });
+
+app.listen(80);
