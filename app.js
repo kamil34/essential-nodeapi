@@ -100,4 +100,4 @@ app.use((error, request, response, next) => {
     });
         
 
-app.listen(8000);
+module.exports = app.listen(8000, () => console.log('Listening on port 8000...'));
