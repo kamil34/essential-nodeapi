@@ -18,10 +18,14 @@ const moment = require('moment'); // moment.js (timestamp & format)
 
 // routes
 const routes = {
-    getUser: require('./api/getUser')
+    getUser: require('./api/getUser'),
+    addUser: require('./api/addUser'),
+    removeUser: require('./api/removeUser')
 };
 
 app.use('/api/getUser', routes.getUser);
+app.use('/api/addUser', routes.addUser);
+app.use('/api/removeUser', routes.removeUser);
 
 // homepage
 app.get('/', (request, response) => {

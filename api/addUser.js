@@ -17,7 +17,7 @@ router.post('/', (request, response) => {
         response.status(200).json({
             'success': true,
             'code': response.statusCode,
-            'info': "Sent a POST request to the '/api/getUser' of the server.",
+            'info': "Sent a POST request to the '/api/addUser' of the server.",
             'timestamp': moment().format("hh:mm:ss.SSS a, MM/DD/YYYY"),
             'body': request.body
             });

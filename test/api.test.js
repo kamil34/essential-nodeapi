@@ -24,13 +24,32 @@ describe("Testing API routes", () => {
 
             });
 
-      describe("GET '/'", () => {
+      describe("POST /api/addUser", () => {
 
-            it("SHOULD GET and get a VALID response", (done) => {
+            it("SHOULD POST and get a VALID body response", (done) => {
 
-                  chai.request(app).get("/").send().end((error, response) => {
+                  chai.request(app).post("/api/addUser").type('json').send({
+                        'request': 'Unit test'
+                        }).end((error, response) => {
                               response.should.have.status(200);
-                              // response.body.should.be.a('string');
+                              response.body.should.be.a('object');
+                              // response.body.should.be.a('array');
+                              done();
+                              });
+
+                  });
+
+            });
+
+      describe("POST /api/removeUser", () => {
+
+            it("SHOULD POST and get a VALID body response", (done) => {
+
+                  chai.request(app).post("/api/removeUser").type('json').send({
+                        'request': 'Unit test'
+                        }).end((error, response) => {
+                              response.should.have.status(200);
+                              response.body.should.be.a('object');
                               // response.body.should.be.a('array');
                               done();
                               });
