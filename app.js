@@ -24,18 +24,6 @@ import { router as removeUser } from './api/removeUser.js';
 app.use(getUser);
 app.use(addUser);
 app.use(removeUser);
-// app.use(addUser);
-// app.use(removeUser);
-// // routes
-// const routes = {
-//     getUser: require('./api/getUser'),
-//     addUser: require('./api/addUser'),
-//     removeUser: require('./api/removeUser')
-// };
-
-// app.use('/api/getUser', routes.getUser);
-// app.use('/api/addUser', routes.addUser);
-// app.use('/api/removeUser', routes.removeUser);
 
 // homepage
 app.get('/', (request, response) => {
