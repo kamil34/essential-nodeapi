@@ -1,11 +1,11 @@
 // app (express)
-const express = require('express');
+import express from 'express';
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // frameworks
-const moment = require('moment'); // moment.js (timestamp & format)
+import moment from 'moment'; // moment.js (timestamp & format)
 
 // app.use((request, response, next) => {
 //     response.header("Access-Control-Allow-Origin", "*");
@@ -17,15 +17,25 @@ const moment = require('moment'); // moment.js (timestamp & format)
 //     })
 
 // routes
-const routes = {
-    getUser: require('./api/getUser'),
-    addUser: require('./api/addUser'),
-    removeUser: require('./api/removeUser')
-};
+import { router as getUser } from './api/getUser.js';
+import { router as addUser } from './api/addUser.js';
+import { router as removeUser } from './api/removeUser.js';
 
-app.use('/api/getUser', routes.getUser);
-app.use('/api/addUser', routes.addUser);
-app.use('/api/removeUser', routes.removeUser);
+app.use(getUser);
+app.use(addUser);
+app.use(removeUser);
+// app.use(addUser);
+// app.use(removeUser);
+// // routes
+// const routes = {
+//     getUser: require('./api/getUser'),
+//     addUser: require('./api/addUser'),
+//     removeUser: require('./api/removeUser')
+// };
+
+// app.use('/api/getUser', routes.getUser);
+// app.use('/api/addUser', routes.addUser);
+// app.use('/api/removeUser', routes.removeUser);
 
 // homepage
 app.get('/', (request, response) => {
@@ -104,4 +114,4 @@ app.use((error, request, response, next) => {
     });
         
 
-module.exports = app.listen(8000, () => console.log('Listening on port 8000...'));
+export default app.listen(8000, () => console.log('Listening on port 8000...'));

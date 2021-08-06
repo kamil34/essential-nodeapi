@@ -1,17 +1,17 @@
 // app (express)
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // frameworks
-const moment = require('moment'); // moment.js (timestamp & format)
+import moment from 'moment'; // moment.js (timestamp & format)
 
 // errors
 const error = new Error();
 
-router.post('/', (request, response) => {
+router.post('/api/getUser', (request, response) => {
     // check if there are any keys in the list
     if (Object.keys(request.body).length >= 1) {
         response.status(200).json({
@@ -26,6 +26,6 @@ router.post('/', (request, response) => {
         error.statusCode = 400;
         throw error;
         };
-    });  
+    });   
 
-module.exports = router;
+export { router };
