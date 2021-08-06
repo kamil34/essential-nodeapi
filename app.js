@@ -101,5 +101,6 @@ app.use((error, request, response, next) => {
         }
     });
         
+    const server = app.listen(8000, () => console.log('Listening on port 8000...'));
 
-export default app.listen(8000, () => console.log('Listening on port 8000...'));
+export { server };
